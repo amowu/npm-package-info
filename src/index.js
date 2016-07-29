@@ -3,13 +3,13 @@ import shell from 'shelljs'
 
 const cli = meow(`
   Usage
-    $ npm-wtf <name>[@<version>]
+    $ wtd <name>[@<version>]
 
   Options
     --list-url, -u  List dependencies URL
 
   Examples
-    $ npm-wtf express
+    $ wtd express
     accepts - Higher-level content negotiation
     array-flatten - Flatten nested arrays
     content-disposition - Create and parse Content-Disposition header
@@ -30,11 +30,11 @@ if (!name) {
     ❌ ERROR: package name is required,
 
     Examples
-      $ npm-wtf express
+      $ wtd express
 
     See more
-      $ npm-wtf --help
+      $ wtd --help
   `)
 } else {
-  shell.exec(`./npm-wtf.sh ${name}`);
+  shell.exec(`./wtd.sh ${name}`);
 }

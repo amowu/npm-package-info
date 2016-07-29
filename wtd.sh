@@ -1,5 +1,5 @@
 #!/bin/sh
-# Usage: ./npm-wtf.sh express
+# Usage: ./wtd.sh express
 
 regex="'?([a-zA-Z-]+)'?:"
 for dependency in $(npm view $1 dependencies); do
