@@ -7,7 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublish": "npm run transpile",
-    "transpile": "babel src --out-dir src-es5"
+    "transpile": "babel src --out-dir src-es5",
+    "watch": "babel src --out-dir src-es5 --watch"
   },
   "repository": {
     "type": "git",
