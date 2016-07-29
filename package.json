@@ -2,7 +2,7 @@
   "name": "npm-wtf",
   "version": "0.1.0",
   "description": "Know project's npm packages easily",
-  "main": "index.js",
+  "main": "src",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,6 +22,9 @@
     "url": "https://github.com/hanksudo/npm-package-info/issues"
   },
   "homepage": "https://github.com/hanksudo/npm-package-info#readme",
+  "dependencies": {
+    "meow": "^3.7.0",
+    "shelljs": "^0.7.3"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
