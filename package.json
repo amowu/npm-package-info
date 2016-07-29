@@ -1,5 +1,5 @@
 {
-  "name": "npi",
+  "name": "npm-wtf",
   "version": "0.1.0",
   "description": "Know project's npm packages easily",
   "main": "index.js",
