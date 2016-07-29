@@ -32,5 +32,10 @@ if (!manager) {
   const parser = require(`./lib/parser/${manager}`)
   const result = parser(name, { listUrl })
 
-  console.log(result)
+  result.then(jsonAry => {
+    jsonAry.map(json => {
+      const { name, description } = json
+      console.log(`${name} - ${description}`)
+    })
+  })
 }
