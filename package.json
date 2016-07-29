@@ -1,0 +1,22 @@
+{
+  "name": "npi",
+  "version": "0.1.0",
+  "description": "Know project's npm packages easily",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amowu/npm-package-info.git"
+  },
+  "keywords": [
+    "npm"
+  ],
+  "author": "Amo Wu <amo260@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amowu/npm-package-info/issues"
+  },
+  "homepage": "https://github.com/amowu/npm-package-info#readme"
+}
