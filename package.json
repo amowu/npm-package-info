@@ -1,0 +1,40 @@
+{
+  "name": "wtd",
+  "version": "0.2.0",
+  "description": "Know project's npm packages easily",
+  "main": "src",
+  "bin": "bin/cli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "npm run transpile",
+    "transpile": "babel src --out-dir src-es5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hanksudo/npm-package-info.git"
+  },
+  "keywords": [
+    "npm"
+  ],
+  "author": "Amo Wu <amo260@gmail.com>",
+  "contributors": [
+    "Hank Wang <drapho@gmail.com>"
+  ],
+  "license": "MIT",
+  "files": [
+    "bin",
+    "src",
+    "src-es5"
+  ],
+  "bugs": {
+    "url": "https://github.com/hanksudo/npm-package-info/issues"
+  },
+  "homepage": "https://github.com/hanksudo/npm-package-info#readme",
+  "dependencies": {
+    "meow": "^3.7.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.11.4",
+    "babel-preset-es2015": "^6.9.0"
+  }
+}
