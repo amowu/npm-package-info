@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "description": "Know project's npm packages easily",
   "main": "src",
+  "bin": "bin/cli.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "npm run transpile",
+    "transpile": "babel src --out-dir src-es5"
   },
   "repository": {
     "type": "git",
@@ -18,6 +21,11 @@
     "Hank Wang <drapho@gmail.com>"
   ],
   "license": "MIT",
+  "files": [
+    "bin",
+    "src",
+    "src-es5"
+  ],
   "bugs": {
     "url": "https://github.com/hanksudo/npm-package-info/issues"
   },
