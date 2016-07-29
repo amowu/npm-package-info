@@ -8,15 +8,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amowu/npm-package-info.git"
+    "url": "git+https://github.com/hanksudo/npm-package-info.git"
   },
   "keywords": [
     "npm"
   ],
   "author": "Amo Wu <amo260@gmail.com>",
+  "contributors": [
+    "Hank Wang <drapho@gmail.com>"
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/amowu/npm-package-info/issues"
+    "url": "https://github.com/hanksudo/npm-package-info/issues"
   },
-  "homepage": "https://github.com/amowu/npm-package-info#readme"
+  "homepage": "https://github.com/hanksudo/npm-package-info#readme",
+  },
 }
