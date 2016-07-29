@@ -31,8 +31,7 @@
   },
   "homepage": "https://github.com/hanksudo/npm-package-info#readme",
   "dependencies": {
-    "meow": "^3.7.0",
-    "shelljs": "^0.7.3"
+    "meow": "^3.7.0"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
