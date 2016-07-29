@@ -29,13 +29,21 @@ if (!manager) {
 } else if (!name) {
   console.log('❌ ERROR: package name is required')
 } else {
-  const parser = require(`./lib/parser/${manager}`)
-  const result = parser(name, { listUrl })
+  try {
+    const parser = require(`./lib/parser/${manager}`)
+    const result = parser(name, { listDev, listUrl })
 
-  result.then(jsonAry => {
-    jsonAry.map(json => {
-      const { name, description } = json
-      console.log(`${name} - ${description}`)
+    result.then(jsonAry => {
+      jsonAry.map(json => {
+        const { name, description } = json
+        console.log(`${name} - ${description}`)
+      })
     })
-  })
+  } catch (e) {
+    if (e.code === 'MODULE_NOT_FOUND') {
+      console.log('❌ ERROR: package manager is not found')
+    } else {
+      throw e
+    }
+  }
 }
