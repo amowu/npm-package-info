@@ -1,15 +1,14 @@
 import meow from 'meow'
-import shell from 'shelljs'
 
 const cli = meow(`
   Usage
-    $ wtd <name>[@<version>]
+    $ wtd <manager> <name>[@<version>]
 
   Options
     --list-url, -u  List dependencies URL
 
   Examples
-    $ wtd express
+    $ wtd npm express
     accepts - Higher-level content negotiation
     array-flatten - Flatten nested arrays
     content-disposition - Create and parse Content-Disposition header
@@ -22,19 +21,16 @@ const cli = meow(`
   }
 })
 
-const [ name ] = cli.input
+const [ manager, name ] = cli.input
 const { listUrl } = cli.flags
 
-if (!name) {
-  console.log(`
-    ❌ ERROR: package name is required,
-
-    Examples
-      $ wtd express
-
-    See more
-      $ wtd --help
-  `)
+if (!manager) {
+  console.log('❌ ERROR: package manager is required')
+} else if (!name) {
+  console.log('❌ ERROR: package name is required')
 } else {
-  shell.exec(`./wtd.sh ${name}`);
+  const parser = require(`./lib/parser/${manager}`)
+  const result = parser(name, { listUrl })
+
+  console.log(result)
 }
