@@ -24,13 +24,12 @@ module.exports = async function (name, options) {
     // Use Promise.all to fetch every dependencies info
     // and resultList shoule be dependencies info array [{ name, description, version, author, ...}, {...}, ...]
     const resultList = await Promise.all(fetchList)
+    // finally, only return dependencies field that you need,
+    // like [{ name, description }, {...}, ...],
+    // or [{ name, description, url }, {...}, ...] with --list-url
     return resultList.map(result => {
-      // only return you need, [{ name, description}, {...}, ...]
-      const { name, description } = result
-      return {
-        name,
-        description
-      }
+      const { name, description, repository: { url } } = result
+      return listUrl ? { name, description, url } : { name, description }
     })
   } catch (e) {
     console.log(e)
