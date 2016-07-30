@@ -1,19 +1,30 @@
+import * as fs from 'fs'
+
 import 'babel-polyfill' // Support async and await function
 import fetch from 'node-fetch'
-
+import loadManager from '../utils/load-manager'
 /**
  * npm dependencies parser
  * @param {string} name
  * @param {{listUrl: boolean}} options
  * @return {Promise.<{{name: string, description: string}}[], Error>}
  */
+const DEFAULT_PACKAGE_FILE = 'package.json'
+
 module.exports = async function (name, options) {
+  var packageJSON
+  if (!name || name.endsWith('.json')) {
+    packageJSON = await fetchLocalJSON()
+  } else {
+    // packageJSON should be { name: 'express', dependencies: { 'accepts': 'x.x.x', ... }, ... }
+    packageJSON = await fetchJSON(`https://registry.npmjs.org/${name}/latest`)
+  }
   try {
     // example: if you typing `$ wtd npm express --list-url`
     // listUrl should be true
     const { listUrl } = options
     // packageJSON should be { name: 'express', dependencies: { 'accepts': 'x.x.x', ... }, ... }
-    const packageJSON = await fetchJSON(`https://registry.npmjs.org/${name}/latest`)
+    // const packageJSON = await fetchJSON(`https://registry.npmjs.org/${name}/latest`)
     // dependencies is { 'accepts': 'x.x.x', ... }
     const { dependencies } = packageJSON
     // fetchList should be a Promise array like [fetchJSON(...), fetchJSON(...), ...]
@@ -41,5 +52,14 @@ function fetchJSON (url) {
     fetch(url)
       .then(res => res.json())
       .then(json => resolve(json))
+  })
+}
+
+function fetchLocalJSON () {
+  return new Promise((resolve, reject) => {
+    fs.readFile(DEFAULT_PACKAGE_FILE, (err, data) => {
+      if (err) reject('❌ ERROR: package name is required');
+      else resolve(JSON.parse(data));
+    })
   })
 }
