@@ -1,7 +1,7 @@
 {
   "name": "wtd",
   "version": "0.3.0",
-  "description": "Know project's npm packages easily",
+  "description": "Know project's dependencies easily. ",
   "main": "src",
   "bin": "bin/cli.js",
   "scripts": {
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hanksudo/npm-package-info.git"
+    "url": "git+https://github.com/kidark/wtd.git"
   },
   "keywords": [
     "npm"
@@ -28,9 +28,9 @@
     "src-es5"
   ],
   "bugs": {
-    "url": "https://github.com/hanksudo/npm-package-info/issues"
+    "url": "https://github.com/kidark/wtd/issues"
   },
-  "homepage": "https://github.com/hanksudo/npm-package-info#readme",
+  "homepage": "https://github.com/kidark/wtd#readme",
   "dependencies": {
     "babel-polyfill": "^6.9.1",
     "meow": "^3.7.0",
