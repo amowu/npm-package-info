@@ -2,7 +2,7 @@ import meow from 'meow'
 
 const cli = meow(`
   Usage
-    $ wtd <manager> <name>[@<version>]
+    $ wtd <manager> <package_name>[@<version>]
 
   Options
     --list-url, -u  List dependencies URL
@@ -26,8 +26,10 @@ const { listUrl } = cli.flags
 
 if (!manager) {
   console.log('❌ ERROR: package manager is required')
+  cli.showHelp()
 } else if (!name) {
   console.log('❌ ERROR: package name is required')
+  cli.showHelp()
 } else {
   const parser = require(`./lib/parser/${manager}`)
   const result = parser(name, { listUrl })
