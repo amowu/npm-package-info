@@ -4,7 +4,7 @@ import fetch from 'node-fetch'
 /**
  * npm dependencies parser
  * @param {string} name
- * @param {{listUrl: string}} options
+ * @param {{listUrl: boolean}} options
  * @return {Promise.<{{name: string, description: string}}[], Error>}
  */
 module.exports = async function (name, options) {
