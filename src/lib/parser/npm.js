@@ -14,7 +14,7 @@ const DEFAULT_PACKAGE_FILE = 'package.json'
 module.exports = async function (name, options) {
   var packageJSON
   if (!name || name.endsWith('.json')) {
-    packageJSON = await fetchLocalJSON()
+    packageJSON = await fetchLocalJSON(name || DEFAULT_PACKAGE_FILE)
   } else {
     // packageJSON should be { name: 'express', dependencies: { 'accepts': 'x.x.x', ... }, ... }
     packageJSON = await fetchJSON(`https://registry.npmjs.org/${name}/latest`)
@@ -55,9 +55,9 @@ function fetchJSON (url) {
   })
 }
 
-function fetchLocalJSON () {
+function fetchLocalJSON (name) {
   return new Promise((resolve, reject) => {
-    fs.readFile(DEFAULT_PACKAGE_FILE, (err, data) => {
+    fs.readFile(name, (err, data) => {
       if (err) reject('❌ ERROR: package name is required');
       else resolve(JSON.parse(data));
     })
