@@ -37,6 +37,7 @@ if (!manager) {
       jsonAry.map(json => {
         const { name, description } = json
         console.log(`${name} - ${description}`)
+        const valueAry = Object.keys(json).map(key => {
       })
     })
   } catch (e) {
