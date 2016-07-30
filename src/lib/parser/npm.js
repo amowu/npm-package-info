@@ -4,30 +4,32 @@ import fetch from 'node-fetch'
 /**
  * npm dependencies parser
  * @param {string} name
- * @param {{listUrl: string}} options
+ * @param {{listUrl: boolean}} options
  * @return {Promise.<{{name: string, description: string}}[], Error>}
  */
 module.exports = async function (name, options) {
   try {
-    // example: $ wtd npm express
+    // example: if you typing `$ wtd npm express --list-url`
+    // listUrl should be true
+    const { listUrl } = options
+    // packageJSON should be { name: 'express', dependencies: { 'accepts': 'x.x.x', ... }, ... }
     const packageJSON = await fetchJSON(`https://registry.npmjs.org/${name}/latest`)
-    // packageJSON = { name: 'express', dependencies: { 'accepts': 'x.x.x', ... }, ... }
+    // dependencies is { 'accepts': 'x.x.x', ... }
     const { dependencies } = packageJSON
-    // dependencies = { 'accepts': 'x.x.x', ... }
+    // fetchList should be a Promise array like [fetchJSON(...), fetchJSON(...), ...]
     const fetchList = Object.keys(dependencies).map(dependency => {
       const version = dependencies[dependency]
       return fetchJSON(`https://registry.npmjs.org/${dependency}/${version}`)
     })
-    // fetchList = [fetchJSON(...), fetchJSON(...), ...]
+    // Use Promise.all to fetch every dependencies info
+    // and resultList shoule be dependencies info array [{ name, description, version, author, ...}, {...}, ...]
     const resultList = await Promise.all(fetchList)
-    // resultList = [{ name, description, version, author, ...}, {...}, ...]
+    // finally, only return dependencies field that you need,
+    // like [{ name, description }, {...}, ...],
+    // or [{ name, description, url }, {...}, ...] with --list-url
     return resultList.map(result => {
-      // only return you need, [{ name, description}, {...}, ...]
-      const { name, description } = result
-      return {
-        name,
-        description
-      }
+      const { name, description, repository: { url } } = result
+      return listUrl ? { name, description, url } : { name, description }
     })
   } catch (e) {
     console.log(e)

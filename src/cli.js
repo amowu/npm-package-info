@@ -21,24 +21,31 @@ const cli = meow(`
   }
 })
 
-const [ manager, name ] = cli.input
 const { listUrl } = cli.flags
+const [ manager, packageName ] = cli.input
 
 if (!manager) {
   console.log('❌ ERROR: package manager is required')
   cli.showHelp()
-} else if (!name) {
+} else if (!packageName) {
   console.log('❌ ERROR: package name is required')
   cli.showHelp()
 } else {
   try {
     const parser = require(`./lib/parser/${manager}`)
-    const result = parser(name, { listDev, listUrl })
+    const result = parser(packageName, { listUrl })
 
+    // Parser return format should be a JSON array like [{...}, ...]
     result.then(jsonAry => {
       jsonAry.map(json => {
-        const { name, description } = json
-        console.log(`${name} - ${description}`)
+        // Print all JSON object properties,
+        // if JSON is { name, description }, CLI should show 'name - description'
+        // or JSON is { name, description, url }, CLI show 'name - description'
+        const valueAry = Object.keys(json).map(key => {
+          return json[key]
+        })
+        const str = valueAry.join(' - ')
+        console.log(str)
       })
     })
   } catch (e) {
