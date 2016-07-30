@@ -42,12 +42,11 @@ if (!manager) {
         const str = valueAry.join(' - ')
         console.log(str)
       })
-    }, reason => {
-      console.log(reason)
-      cli.showHelp()
-    })
-  }, reason => {
-    console.log(reason)
-    cli.showHelp()
-  })
+    }, reject)
+  }, reject)
+}
+
+function reject(reason) {
+  console.log(reason)
+  cli.showHelp()
 }
