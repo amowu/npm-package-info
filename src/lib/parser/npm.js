@@ -12,7 +12,7 @@ import loadManager from '../utils/load-manager'
 const DEFAULT_PACKAGE_FILE = 'package.json'
 
 module.exports = async function (name, options) {
-  var packageJSON
+  let packageJSON
   if (!name || name.endsWith('.json')) {
     packageJSON = await fetchLocalJSON(name || DEFAULT_PACKAGE_FILE)
   } else {
