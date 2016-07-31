@@ -1,6 +1,6 @@
 import 'babel-polyfill' // Support async and await function
 
-export default function loadManager(manager) {
+export default function loadManager (manager) {
   return new Promise((resolve, reject) => {
     try {
       resolve(require(`../parser/${manager}`))

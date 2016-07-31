@@ -2,7 +2,6 @@ import * as fs from 'fs'
 
 import 'babel-polyfill' // Support async and await function
 import fetch from 'node-fetch'
-import loadManager from '../utils/load-manager'
 /**
  * npm dependencies parser
  * @param {string} name
@@ -58,8 +57,8 @@ function fetchJSON (url) {
 function fetchLocalJSON (name) {
   return new Promise((resolve, reject) => {
     fs.readFile(name, (err, data) => {
-      if (err) reject('❌ ERROR: package name is required');
-      else resolve(JSON.parse(data));
+      if (err) reject('❌ ERROR: package name is required')
+      else resolve(JSON.parse(data))
     })
   })
 }

@@ -46,7 +46,7 @@ if (!manager) {
   }, reject)
 }
 
-function reject(reason) {
+function reject (reason) {
   console.log(reason)
   cli.showHelp()
 }
