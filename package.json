@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kidark/wtd.git"
+    "url": "git+https://github.com/kidark/wtd-cli.git"
   },
   "keywords": [
     "npm"
@@ -29,9 +29,9 @@
     "src-es5"
   ],
   "bugs": {
-    "url": "https://github.com/kidark/wtd/issues"
+    "url": "https://github.com/kidark/wtd-cli/issues"
   },
-  "homepage": "https://github.com/kidark/wtd#readme",
+  "homepage": "https://github.com/kidark/wtd-cli#readme",
   "dependencies": {
     "babel-polyfill": "^6.9.1",
     "meow": "^3.7.0",
