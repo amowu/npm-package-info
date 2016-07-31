@@ -5,7 +5,7 @@
   "main": "src",
   "bin": "bin/cli.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test yet\"",
     "prepublish": "npm run transpile",
     "transpile": "babel src --out-dir src-es5",
     "watch": "babel src --out-dir src-es5 --watch"
