@@ -1,4 +1,5 @@
 import meow from 'meow'
+import loadManger from './lib/utils/load-manager'
 
 const cli = meow(`
   Usage
@@ -27,32 +28,25 @@ const [ manager, packageName ] = cli.input
 if (!manager) {
   console.log('❌ ERROR: package manager is required')
   cli.showHelp()
-} else if (!packageName) {
-  console.log('❌ ERROR: package name is required')
-  cli.showHelp()
 } else {
-  try {
-    const parser = require(`./lib/parser/${manager}`)
-    const result = parser(packageName, { listUrl })
-
+  loadManger(manager).then(parser => {
     // Parser return format should be a JSON array like [{...}, ...]
-    result.then(jsonAry => {
+    parser(packageName, { listUrl }).then(jsonAry => {
       jsonAry.map(json => {
         // Print all JSON object properties,
         // if JSON is { name, description }, CLI should show 'name - description'
-        // or JSON is { name, description, url }, CLI show 'name - description'
+        // or JSON is { name, description, url }, CLI show 'name - description- url'
         const valueAry = Object.keys(json).map(key => {
           return json[key]
         })
         const str = valueAry.join(' - ')
         console.log(str)
       })
-    })
-  } catch (e) {
-    if (e.code === 'MODULE_NOT_FOUND') {
-      console.log('❌ ERROR: package manager is not found')
-    } else {
-      throw e
-    }
-  }
+    }, reject)
+  }, reject)
+}
+
+function reject(reason) {
+  console.log(reason)
+  cli.showHelp()
 }
